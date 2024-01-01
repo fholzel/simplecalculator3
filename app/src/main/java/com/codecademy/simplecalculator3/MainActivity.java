@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static ArrayList<Object> equationString = new ArrayList<>();
     public static ArrayList<Object> stackValues = new ArrayList<>();
     public static ArrayList<Object> equationValues = new ArrayList<>();
+    public static String[] stackNames = { "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8" };
+    public static String[] equationNames = { "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8" };
     public static boolean leftFunction = false;
     public static boolean rightFunction = false;
     public static boolean alphaFunction = false;
@@ -520,6 +522,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     // evaluate equation Q1 and store result into entry string
                     Log.d(TAG, "operands       : equation");
                     Log.d(TAG, "equationinput  : " + equationEntryString);
+                    equation.initEquation(stackNames, equationNames, stackValues, equationValues);
                     equationOutputString = equation.parseEquation(equationEntryString, 0);
                     Log.d(TAG, "operands       : equation");
                     Log.d(TAG, "equationoutput : " + equationOutputString);
@@ -1182,11 +1185,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         equButtons.add(binding.btnEqu6.btnButton);
         equButtons.add(binding.btnEqu7.btnButton);
         equButtons.add(binding.btnEqu8.btnButton);
-
-        // String output = "";
-        // Integer level = 0;
-        // Equation equation = new Equation();
-        // output = equation.parseEquation(equationString, level);
-        // Log.d(TAG, output);
     }
 }

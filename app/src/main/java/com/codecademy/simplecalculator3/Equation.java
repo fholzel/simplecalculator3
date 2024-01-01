@@ -1,35 +1,58 @@
 
 package com.codecademy.simplecalculator3;
 
+import com.codecademy.simplecalculator3.R;
+
 import java.math.MathContext;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+
 import android.util.Log;
 
 import static java.math.RoundingMode.HALF_UP;
 public class Equation {
     Integer bigDecimalPrecision = 12;
     MathContext bigDecimalPrecisionMC = new MathContext(bigDecimalPrecision, HALF_UP);
-    BigDecimal[] stackList = new BigDecimal[8];
     String TAG = "MainActivityTag";
+    String stackNames[];
+    String equationNames[];
+    ArrayList<Object> stackValues = new ArrayList<>();
+    ArrayList<Object> equationValues = new ArrayList<>();
     public Equation() {
+    }
+    public void initEquation(String[] stackNamesParam, String[] equationNamesParam, ArrayList<Object> stackValuesParam, ArrayList<Object> equationValuesParam) {
+        stackNames = stackNamesParam;
+        stackValues = stackValuesParam;
+        equationNames = equationNamesParam;
+        equationValues = equationValuesParam;
     }
     public String parseEquation(String equation, Integer level) {
         // remove spaces
-        equation = equation.replaceAll(" ", "");
+        // substitute equation values
         // substitute stack values
-        /*
+        Integer replaceIndex = 0;
         if (level == 0) {
             equation = equation.replaceAll(" ", "");
-            equation = equation.replaceAll("S0", stackList[0].toString());
-            equation = equation.replaceAll("S1", stackList[1].toString());
-            equation = equation.replaceAll("S2", stackList[2].toString());
-            equation = equation.replaceAll("S3", stackList[3].toString());
-            equation = equation.replaceAll("S4", stackList[4].toString());
-            equation = equation.replaceAll("S5", stackList[5].toString());
-            equation = equation.replaceAll("S6", stackList[6].toString());
-            equation = equation.replaceAll("S7", stackList[7].toString());
+            replaceIndex = 0;
+            Log.d(TAG, "originial equation : " + equation);
+            for (String equationName : equationNames) {
+                if (equationValues.get(replaceIndex).toString().compareTo("______________________________") != 0)
+                {
+                    equation = equation.replaceAll(equationName, equationValues.get(replaceIndex).toString());
+                }
+                replaceIndex++;
+            }
+            Log.d(TAG, "rebuild equation : " + equation);
+            replaceIndex = 0;
+            Log.d(TAG, "original equation : " + equation);
+            for (String stackName : stackNames) {
+                if (stackValues.get(replaceIndex) instanceof BigDecimal) {
+                    equation = equation.replaceAll(stackName, stackValues.get(replaceIndex).toString());
+                }
+                replaceIndex++;
+            }
+            Log.d(TAG, "rebuild equation : " + equation);
         }
-         */
         // index of operators : operation code
         // x+y  : 1 : add
         // x-y  : 2 : subtract
