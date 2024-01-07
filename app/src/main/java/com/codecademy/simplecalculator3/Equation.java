@@ -16,25 +16,65 @@ public class Equation {
     String TAG = "MainActivityTag";
     String stackNames[];
     String equationNames[];
+    String memStackNames[][];
+    String memEquationNames[][];
     ArrayList<Object> stackValues = new ArrayList<>();
     ArrayList<Object> equationValues = new ArrayList<>();
+    ArrayList<Object> memRow = new ArrayList<>();
+    ArrayList<Object> equRow = new ArrayList<>();
+    ArrayList<ArrayList<Object>> memTable = new ArrayList<ArrayList<Object>>();
+    ArrayList<ArrayList<Object>> equTable = new ArrayList<ArrayList<Object>>();
     public Equation() {
     }
-    public void initEquation(String[] stackNamesParam, String[] equationNamesParam, ArrayList<Object> stackValuesParam, ArrayList<Object> equationValuesParam) {
+    public void initEquation(
+            String[] stackNamesParam,
+            String[] equationNamesParam,
+            String[][] memStackNamesParam,
+            String[][] memEquationNamesParam,
+            ArrayList<Object> stackValuesParam,
+            ArrayList<Object> equationValuesParam,
+            ArrayList<ArrayList<Object>> memTableParam,
+            ArrayList<ArrayList<Object>> equTableParam) {
         stackNames = stackNamesParam;
         stackValues = stackValuesParam;
+        memStackNames = memStackNamesParam;
+        memEquationNames = memEquationNamesParam;
         equationNames = equationNamesParam;
         equationValues = equationValuesParam;
+        memTable = memTableParam;
+        equTable = equTableParam;
+        for (int i = 0; i < 8; i++) {
+            memRow = memTable.get(i);
+            for (int j = 0; j < 8; j++) {
+                if (memRow.get(j) instanceof BigDecimal) {
+                    Log.d(TAG, "mem table : " + i + " : " + j + " : " + memRow.get(j));
+                }
+            }
+        }
     }
     public String parseEquation(String equation, Integer level) {
-        // remove spaces
-        // substitute equation values
-        // substitute stack values
         Integer replaceIndex = 0;
         if (level == 0) {
+            // remove spaces
             equation = equation.replaceAll(" ", "");
+            // substitute memory equation values
+            Log.d(TAG, "original equation A : " + equation);
+            for (int i = 0; i < 8; i++) {
+                equRow = equTable.get(i);
+                for (int j = 0; j < 8; j++) {
+                    if (equation.contains(memEquationNames[i][j])) {
+                        if (equRow.get(j).toString().compareTo("______________________________") != 0) {
+                            equation = equation.replaceAll(memEquationNames[i][j], equRow.get(j).toString());
+                        } else {
+                            Log.d(TAG, "invalid equ stack : " + memEquationNames[i][j]);
+                        }
+                    }
+                }
+            }
+            Log.d(TAG, "rebuild  equation A : " + equation);
+            // substitute equation values
             replaceIndex = 0;
-            Log.d(TAG, "originial equation : " + equation);
+            Log.d(TAG, "original equation B : " + equation);
             for (String equationName : equationNames) {
                 if (equationValues.get(replaceIndex).toString().compareTo("______________________________") != 0)
                 {
@@ -42,16 +82,32 @@ public class Equation {
                 }
                 replaceIndex++;
             }
-            Log.d(TAG, "rebuild equation : " + equation);
+            Log.d(TAG, "rebuild  equation B : " + equation);
+            // substitute memory stack values
+            Log.d(TAG, "original equation C : " + equation);
+            for (int i = 0; i < 8; i++) {
+                memRow = memTable.get(i);
+                for (int j = 0; j < 8; j++) {
+                    if (equation.contains(memStackNames[i][j])) {
+                        if (memRow.get(j) instanceof BigDecimal) {
+                            equation = equation.replaceAll(memStackNames[i][j], memRow.get(j).toString());
+                        } else {
+                            Log.d(TAG, "invalid mem stack : " + memStackNames[i][j]);
+                        }
+                    }
+                }
+            }
+            Log.d(TAG, "rebuild  equation C : " + equation);
+            // substitute stack values
             replaceIndex = 0;
-            Log.d(TAG, "original equation : " + equation);
+            Log.d(TAG, "original equation D : " + equation);
             for (String stackName : stackNames) {
                 if (stackValues.get(replaceIndex) instanceof BigDecimal) {
                     equation = equation.replaceAll(stackName, stackValues.get(replaceIndex).toString());
                 }
                 replaceIndex++;
             }
-            Log.d(TAG, "rebuild equation : " + equation);
+            Log.d(TAG, "rebuild  equation D : " + equation);
         }
         // index of operators : operation code
         // x+y  : 1 : add

@@ -26,25 +26,25 @@
             android:id="@+id/tvTextLeft"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:height="14dp"
+            android:height="@dimen/_11sdp"
             android:clickable="false"
             android:layout_gravity="top|start"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/_4sdp"
             android:text="@{leftText, default=`-`}"
             android:textColor="@color/orange"
-            android:textSize="10sp" >
+            android:textSize="@dimen/_5ssp" >
         </TextView>
         <TextView
             android:id="@+id/tvTextRight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:height="14dp"
+            android:height="@dimen/_11sdp"
             android:clickable="false"
             android:layout_gravity="top|end"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="@dimen/_4sdp"
             android:text="@{rightText, default=`-`}"
             android:textColor="@color/blue"
-            android:textSize="10sp" >
+            android:textSize="@dimen/_5ssp" >
         </TextView>
     </FrameLayout>
 </layout>

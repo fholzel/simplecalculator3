@@ -6,18 +6,18 @@
     android:background="@color/beige">
     <TextView
         android:id="@+id/textViewLeft"
-        android:layout_width="24dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/_18sdp"
+        android:layout_height="@dimen/_31sdp"
         android:gravity="end|center"
         android:textColor="@color/black"
         android:text="X0:" />
     <TextView
         android:id="@+id/textViewRight"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/_31sdp"
         android:layout_toRightOf="@id/textViewLeft"
         android:gravity="end|center"
-        android:paddingEnd="8dp"
+        android:paddingEnd="@dimen/_6sdp"
         android:textColor="@color/black"
         android:text="TextView" />
 </RelativeLayout>

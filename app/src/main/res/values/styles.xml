@@ -7,14 +7,14 @@
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">0</item>
         <item name="android:shadowRadius">0.0</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/_6ssp</item>
         <item name="android:fontFamily">monospace</item>
         <item name="android:textStyle">bold</item>
         <item name="android:background">@drawable/custom_button_small</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
-        <item name="android:layout_width">32sp</item>
-        <item name="android:layout_height">24sp</item>
+        <item name="android:layout_width">@dimen/_16sdp</item>
+        <item name="android:layout_height">@dimen/_12sdp</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:minHeight">0dp</item>
     </style>
@@ -25,14 +25,14 @@
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">0</item>
         <item name="android:shadowRadius">0.0</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/_6ssp</item>
         <item name="android:fontFamily">monospace</item>
         <item name="android:textStyle">bold</item>
         <item name="android:background">@drawable/custom_button_large</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
-        <item name="android:layout_width">64sp</item>
-        <item name="android:layout_height">48sp</item>
+        <item name="android:layout_width">@dimen/_32sdp</item>
+        <item name="android:layout_height">@dimen/_24sdp</item>
     </style>
     <style name="buttonLeft" parent="@android:style/Widget.Button">
         <item name="android:gravity">center_vertical|center_horizontal</item>
@@ -41,14 +41,14 @@
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">0</item>
         <item name="android:shadowRadius">0.0</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/_6ssp</item>
         <item name="android:fontFamily">monospace</item>
         <item name="android:textStyle">bold</item>
         <item name="android:background">@drawable/custom_button_left</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
-        <item name="android:layout_width">64sp</item>
-        <item name="android:layout_height">48sp</item>
+        <item name="android:layout_width">@dimen/_32sdp</item>
+        <item name="android:layout_height">@dimen/_24sdp</item>
     </style>
     <style name="buttonRight" parent="@android:style/Widget.Button">
         <item name="android:gravity">center_vertical|center_horizontal</item>
@@ -57,14 +57,14 @@
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">0</item>
         <item name="android:shadowRadius">0.0</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/_6ssp</item>
         <item name="android:fontFamily">monospace</item>
         <item name="android:textStyle">bold</item>
         <item name="android:background">@drawable/custom_button_right</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
-        <item name="android:layout_width">64sp</item>
-        <item name="android:layout_height">48sp</item>
+        <item name="android:layout_width">@dimen/_32sdp</item>
+        <item name="android:layout_height">@dimen/_24sdp</item>
     </style>
     <style name="CustomDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="android:background">@color/white</item>

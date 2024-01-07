@@ -62,8 +62,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static ArrayList<Object> equationString = new ArrayList<>();
     public static ArrayList<Object> stackValues = new ArrayList<>();
     public static ArrayList<Object> equationValues = new ArrayList<>();
-    public static String[] stackNames = { "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8" };
-    public static String[] equationNames = { "Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7", "Q8" };
+    public static String[] stackNames = new String[8];
+    public static String[] equationNames = new String[8];
+    public static String memStackNames[][] = new String[8][8];
+    public static String memEquationNames[][] = new String[8][8];
     public static boolean leftFunction = false;
     public static boolean rightFunction = false;
     public static boolean alphaFunction = false;
@@ -455,6 +457,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     inputLine = stackString + "Q";
                     binding.etNumber.setText(inputLine);
                     break;
+                // Mn
+                case 14044:
+                    inputLine = stackString + "M";
+                    binding.etNumber.setText(inputLine);
+                    break;
                 // enter
                 case 15014:
                     // if entry string not empty
@@ -522,8 +529,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     // evaluate equation Q1 and store result into entry string
                     Log.d(TAG, "operands       : equation");
                     Log.d(TAG, "equationinput  : " + equationEntryString);
-                    equation.initEquation(stackNames, equationNames, stackValues, equationValues);
-                    equationOutputString = equation.parseEquation(equationEntryString, 0);
+                    equation.initEquation(
+                            stackNames,
+                            equationNames,
+                            memStackNames,
+                            memEquationNames,
+                            stackValues,
+                            equationValues,
+                            memTable,
+                            equTable);
+                    try {
+                        equationOutputString = equation.parseEquation(equationEntryString, 0);
+                    } catch (Exception e) {
+                        equationOutputString = "equation caused exception";
+                    }
+                    binding.etNumber.setText(equationOutputString);
                     Log.d(TAG, "operands       : equation");
                     Log.d(TAG, "equationoutput : " + equationOutputString);
                     leftFunction  = false;
@@ -1031,7 +1051,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.btnEval.btnButton.setOnClickListener((MainActivity.this));
         binding.btnSn.btnButton.setOnClickListener((MainActivity.this));
         binding.btnQn.btnButton.setOnClickListener((MainActivity.this));
-        binding.btnMisc4.btnButton.setOnClickListener((MainActivity.this));
+        binding.btnMn.btnButton.setOnClickListener((MainActivity.this));
         binding.btnAlpha.btnButton.setOnClickListener((MainActivity.this));
         binding.btnEnter.btnButton.setOnClickListener((MainActivity.this));
         binding.btnSubtract.btnButton.setOnClickListener((MainActivity.this));
@@ -1079,7 +1099,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         binding.btnEval.btnButton.setTag(14010);
         binding.btnSn.btnButton.setTag(14020);
         binding.btnQn.btnButton.setTag(14030);
-        binding.btnMisc4.btnButton.setTag(14040);
+        binding.btnMn.btnButton.setTag(14040);
         binding.btnAlpha.btnButton.setTag(14050);
         binding.btnEnter.btnButton.setTag(15010);
         binding.btnSubtract.btnButton.setTag(15020);
@@ -1132,6 +1152,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 1; i <= 8; i++) {
             equTable.add(equRow);
         }
+        for (int i = 0; i < 8; i++) {
+            stackNames[i] = "S" + (i+1);
+            equationNames[i] = "Q" + (i+1);
+            for (int j = 0; j < 8; j++) {
+                memStackNames[i][j] = "M" + (i+1) + "S" + (j+1);
+                memEquationNames[i][j] = "M" + (i+1) + "Q" + (j+1);
+            }
+        }
+
         onClickDisplayStack();
         onClickDisplayEquation();
         // hashmap : key = string : value : object

@@ -13,8 +13,8 @@
 
         <ListView
             android:id="@+id/equationView"
-            android:layout_width="230dp"
-            android:layout_height="320dp"
+            android:layout_height="@dimen/_248sdp"
+            android:layout_width="@dimen/_180sdp"
             android:background="@color/beige"
             android:divider="#000000"
             android:dividerHeight="0dp"
@@ -25,8 +25,8 @@
 
         <ListView
             android:id="@+id/stackView"
-            android:layout_width="170dp"
-            android:layout_height="320dp"
+            android:layout_height="@dimen/_248sdp"
+            android:layout_width="@dimen/_120sdp"
             android:background="@color/beige"
             android:divider="#000000"
             android:dividerHeight="0dp"
@@ -38,7 +38,7 @@
         <EditText
             android:id="@+id/etNumber"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="@dimen/_31sdp"
             android:background="@color/beige"
             android:ems="10"
             android:hint="Enter a number here ..."
@@ -261,10 +261,10 @@
                 android:layout_height="match_parent">
 
                 <include
-                    android:id="@+id/btnMisc4"
+                    android:id="@+id/btnMn"
                     layout="@layout/button_text"
                     app:RightText="@{``}"
-                    app:buttonText="@{``}"
+                    app:buttonText="@{`Mn`}"
                     app:leftText="@{``}" />
 
                 <include
@@ -485,13 +485,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="20dp" />
+            app:layout_constraintGuide_begin="@dimen/_10sdp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="20dp" />
+            app:layout_constraintGuide_begin="@dimen/_10sdp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
